@@ -4,27 +4,27 @@ import { COLORS, SIZES, FONTS } from '../utils/constants';
 export const globalStyles = StyleSheet.create({
   rootView:{
     flex:1,
-    backgroundColor: COLORS.gray[50],
+    backgroundColor: COLORS.whiteBg,
   },
   container: {
     flex: 1,
-    backgroundColor: COLORS.gray[50],
+    backgroundColor: COLORS.whiteBg,
   },
   card: {
     backgroundColor: COLORS.white,
     borderRadius: SIZES.radius,
     padding: SIZES.padding,
     marginBottom: SIZES.margin,
-    shadowColor: COLORS.black,
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
+    // shadowColor: COLORS.black,
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 1,
+    // },
+    // shadowOpacity: 0.1,
+    // shadowRadius: 2,
+    // elevation: 2,
     borderWidth: 1,
-    borderColor: COLORS.gray[100],
+    borderColor: COLORS.gray[300],
   },
   header: {
     backgroundColor: COLORS.primary,
@@ -43,7 +43,7 @@ export const globalStyles = StyleSheet.create({
   },
   screenTitle: {
     fontSize: SIZES.h1,
-    fontWeight: 'bold',
+    //fontWeight: 'bold',
     color: COLORS.gray[900],
     marginBottom: SIZES.margin,
   },

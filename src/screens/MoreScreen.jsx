@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
   },
   menuIcon: {
     backgroundColor: COLORS.gray[100],
-    borderRadius: 20,
+    borderRadius: 26,
     padding: 12,
     marginRight: 16,
   },

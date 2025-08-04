@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, StatusBar } from 'react-native';
 import MyRideCard from '../components/Cards/MyRideCard';
 import { myRides } from '../data/mockData';
 import { COLORS, SIZES } from '../utils/constants';
@@ -7,7 +7,12 @@ import { globalStyles } from '../styles/globalStyles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const MyRidesScreen = () => {
-  return (<SafeAreaView style={globalStyles.rootView}>
+  return (<SafeAreaView style={globalStyles.rootView} >
+     {/* <StatusBar
+        translucent
+        backgroundColor="transparent"
+        barStyle="dark-content" // or 'light-content'
+        /> */}
     <View style={globalStyles.container}>
       {/* Header */}
       {/* <View style={globalStyles.header}>

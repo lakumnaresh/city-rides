@@ -30,15 +30,15 @@ const BottomTabNavigator = () => {
 
             return <Icon name={iconName} size={22} color={color} />;
           },
-          tabBarActiveTintColor: COLORS.primary,
-          tabBarInactiveTintColor: COLORS.gray[500],
+          tabBarActiveTintColor: COLORS.black,
+          tabBarInactiveTintColor: COLORS.gray[400],
           tabBarStyle: {
             backgroundColor: COLORS.white,
             borderTopColor: COLORS.gray[300],
             borderTopWidth: 1,
             paddingBottom: 0,
             paddingTop: 0,
-            height: 70,
+            height: 56,
           },
           tabBarLabelStyle: {
             fontSize: 11.5,

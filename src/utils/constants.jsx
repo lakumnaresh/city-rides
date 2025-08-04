@@ -19,6 +19,7 @@ export const COLORS = {
   },
   white: '#ffffff',
   black: '#000000',
+  whiteBg:'#f4f6f9',
 };
 
 export const SIZES = {
@@ -26,7 +27,7 @@ export const SIZES = {
   font: 14,
   radius: 8,
   padding: 12,
-  margin: 16,
+  margin: 14,
   
   // font sizes
   largeTitle: 32,

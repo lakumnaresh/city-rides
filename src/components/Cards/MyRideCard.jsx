@@ -51,7 +51,7 @@ const MyRideCard = ({ ride }) => {
       </View>
       
       <View style={globalStyles.spaceBetween}>
-        <View style={globalStyles.row}>
+        <View style={[globalStyles.row,{marginTop:8}]}>
           <Icon name="calendar" size={14} color={COLORS.gray[500]} />
           <Text style={styles.dateTime}>{ride.date} at {ride.time}</Text>
         </View>
@@ -86,7 +86,8 @@ const styles = StyleSheet.create({
   statusBadge: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 12,
+    paddingLeft: 6,
+    paddingRight: 8,
     paddingVertical: 4,
     borderRadius: 20,
   },
