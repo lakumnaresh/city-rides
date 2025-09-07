@@ -1,36 +1,46 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { COLORS, SIZES } from '../../utils/constants';
 import { globalStyles } from '../../styles/globalStyles';
-import {RideCardProps} from '../../types';
+import { Ride, RideCardProps } from '../../types';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+  
 
 const RideCard = ({ ride, onPress, borderColor }: RideCardProps) => {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  type RootStackParamList = {
+    RideDetails: { ride: Ride };
+    // ...other routes if needed
+  };
+
   return (
-    <TouchableOpacity style={[globalStyles.card, styles.container,{borderColor}]} onPress={onPress}>
-      <View style={[globalStyles.spaceBetween]}>
-        <View style={[globalStyles.row,{flex:1}]}>
-          <View style={[styles.iconContainer, { backgroundColor: COLORS.primary + '20' }]}>
-            <Icon 
-              name={ride.type === 'car' ? 'truck' : 'smartphone'} 
-              size={20} 
-              color={COLORS.primary} 
-            />
-          </View>
-          <View style={styles.driverInfo}>
-            <Text style={styles.driverName}>{ride.name}</Text>
-            <View style={globalStyles.row}>
-              <Icon name="star" size={14} color="#fbbf24" />
-              <Text style={styles.rating}>{ride.rating}</Text>
+    <View style={[globalStyles.card, styles.container,{borderColor}]}>
+      <TouchableOpacity onPress={onPress}>
+        <View style={[globalStyles.spaceBetween]}>
+          <View style={[globalStyles.row,{flex:1}]}>
+            <View style={[styles.iconContainer, { backgroundColor: COLORS.primary + '20' }]}>
+              <Icon 
+                name={ride.type === 'car' ? 'truck' : 'smartphone'} 
+                size={20} 
+                color={COLORS.primary} 
+              />
+            </View>
+            <View style={styles.driverInfo}>
+              <Text style={styles.driverName}>{ride.name}</Text>
+              <View style={globalStyles.row}>
+                <Icon name="star" size={14} color="#fbbf24" />
+                <Text style={styles.rating}>{ride.rating}</Text>
+              </View>
             </View>
           </View>
+          <View style={styles.priceContainer}>
+            <Text style={styles.price}>₹{ride.price}</Text>
+            <Text style={styles.seats}>{ride.seats} seats</Text>
+          </View>
         </View>
-        <View style={styles.priceContainer}>
-          <Text style={styles.price}>₹{ride.price}</Text>
-          <Text style={styles.seats}>{ride.seats} seats</Text>
-        </View>
-      </View>
       
       <View style={[globalStyles.row, styles.routeContainer]}>
         <Icon name="map-pin" size={14} color={COLORS.gray[500]} />
@@ -48,13 +58,19 @@ const RideCard = ({ ride, onPress, borderColor }: RideCardProps) => {
         </View>
       </View>
     </TouchableOpacity>
-  );
+    {borderColor == COLORS.gray[600] && (<TouchableOpacity onPress={() => {
+      navigation.navigate('RideDetails', { ride });
+    }}>
+      <View style={styles.requestButton}>
+        <Text style={styles.requestButtonText}>Request Ride</Text>
+      </View>
+    </TouchableOpacity>)}
+  </View>);
 };
 
 const styles = StyleSheet.create({
   container: {
     marginBottom: SIZES.margin,
-    //flex:1,
   },
   iconContainer: {
     borderRadius: 20,
@@ -99,6 +115,20 @@ const styles = StyleSheet.create({
     fontSize: SIZES.caption,
     color: COLORS.gray[600],
     marginLeft: 4,
+  },
+  requestButton: {
+    backgroundColor: COLORS.primary,
+    padding: SIZES.padding * 0.5,
+    borderRadius: SIZES.radius,
+    marginTop: SIZES.margin,
+    alignItems: 'center',
+    flex:1,
+    alignSelf:'flex-end'
+  },
+  requestButtonText: {
+    color: COLORS.white,
+    fontSize: SIZES.font,
+    fontWeight: '500',
   },
 });
 

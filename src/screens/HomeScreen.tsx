@@ -1,24 +1,33 @@
-import React,{useCallback, useEffect, useState} from 'react';
-import { View, Text, ScrollView, StyleSheet, StatusBar, FlatList, TouchableOpacity } from 'react-native';
+import React, { useCallback, useState } from 'react';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import MapView from '../components/map/MapView';
 import RideCard from '../components/cards/RideCard';
 import { availableRides } from '../data/mockData';
 import { COLORS, SIZES } from '../utils/constants';
 import { globalStyles } from '../styles/globalStyles';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useIsFocused } from '@react-navigation/native';
-import {Ride} from '../types';
+import { Ride } from '../types';
 
-const HomeScreen = () => {
+type RootStackParamList = {
+  Home: undefined;
+  RideDetails: { ride: Ride };
+};
+
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
+
+interface HomeScreenProps {
+  navigation: NavigationProp;
+}
+
+const HomeScreen = ({ navigation }: HomeScreenProps) => {
   const [selectedId, setSelectedId] = useState(0);
 
   const handleRidePress = (ride: Ride) => {
-    // Handle ride selection
-    console.log('Selected ride:', ride);
-    setSelectedId(ride.id)
+    setSelectedId(ride.id);
+    // navigation.navigate('RideDetails', { ride });
   };
 
- const renderItem = useCallback(({item}) => {
+ const renderItem = useCallback(({item}: {item: Ride}) => {
     const borderColor = item.id === selectedId ? COLORS.gray[600] : COLORS.white;
     return (
       <RideCard 
@@ -38,6 +47,7 @@ const HomeScreen = () => {
           {availableRides ? (<FlatList
           data={availableRides}
           renderItem={renderItem}
+          showsVerticalScrollIndicator={false}
            />) : null}
         </View>
     </View>

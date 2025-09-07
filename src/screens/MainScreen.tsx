@@ -1,5 +1,5 @@
 import React from 'react';
-import BottomTabNavigator from '../components/navigation/BottomTabNavigator';
+import AppNavigator from '../components/navigation/AppNavigator';
 import { useIsFocused } from '@react-navigation/native';
 
 const MainScreen = () => {
@@ -12,8 +12,7 @@ const MainScreen = () => {
   //     }
   //   }, [isFocused]);
 
-  return (
-      <BottomTabNavigator />);
+  return <AppNavigator />;
 };
 
 export default MainScreen;

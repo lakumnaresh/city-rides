@@ -6,8 +6,8 @@
  */
 
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
 import SplashScreen from './src/screens/SplashScreen';
 import OnboardingScreen from './src/screens/auth/OnboardingScreen';
 import LoginScreen from './src/screens/auth/LoginScreen';
